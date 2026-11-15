@@ -1,0 +1,37 @@
+<h1 class="mb-4 fw-normal">Consulta de Oficina</h1>
+
+<div class="mb-3">
+    <span class="text-secondary d-block fw-bold">ID</span>
+    <span>{{oficina.id}}</span>
+</div>
+
+<div class="mb-3">
+    <span class="text-secondary d-block fw-bold">Título</span>
+    <span>{{oficina.titulo}}</span>
+</div>
+
+<div class="mb-3">
+    <span class="text-secondary d-block fw-bold">Responsável</span>
+    <span>{{oficina.nome}}</span>
+</div>
+
+<div class="mb-3">
+    <span class="text-secondary d-block fw-bold">Carga horária total</span>
+    <span>{{oficina.duracao}} h</span>
+</div>
+
+<div class="mb-3">
+    <span class="text-secondary d-block fw-bold">Inscrições</span>
+    <span>{{#if oficina.aberta}}Abertas{{else}}Encerradas{{/if}}</span>
+</div>
+
+<div class="mb-4">
+    <span class="text-secondary d-block fw-bold mb-1">Descrição</span>
+    <div class="p-3 bg-light rounded border text-break" style="white-space: pre-line;">
+        {{oficina.descricao}}
+    </div>
+</div>
+
+<div>
+    <a href="/oficina/atualizar/{{oficina.id}}" class="btn btn-primary">Editar</a>
+</div>

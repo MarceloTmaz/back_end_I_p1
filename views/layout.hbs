@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{titulo_pagina}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <div class="container mt-4">
+      <ul class="nav nav-pills nav-fill mb-4">
+        <li class="nav-item">
+          <a class="nav-link {{#if index}}active{{/if}}" href="/">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if Sobre}}active{{/if}}" href="/sobre">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if cadastro}}active{{/if}}" href="/oficina/cadastrar">Nova Oficina</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if pesquisa}}active{{/if}}" href="/oficina/buscar">Pesquisa</a>
+        </li>
+      </ul>
+      {{{body}}} 
+    </div>
+
+    <script src="/javascripts/bootstrap/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

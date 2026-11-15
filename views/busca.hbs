@@ -1,0 +1,18 @@
+<h1 class="mb-4 fw-normal">Pesquisa de Oficinas</h1>
+
+<form action="/oficina/buscar" method="POST" class="mb-3">
+    <div class="mb-3">
+        <label for="termo" class="form-label text-secondary">Título da oficina</label>
+        <input type="text" class="form-control" id="busca" name="busca" value="{{busca}}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+{{#unless oficinas}}
+<p class="text-secondary">Digite um termo para pesquisar pelo título da oficina.</p>
+{{else}}
+{{#each oficinas}}
+    <p><a href="/oficina/consulta/{{this.id}}">{{this.titulo}}</a></p>
+  {{/each}}
+{{/unless}}

@@ -1,0 +1,30 @@
+<h1 class="mb-4 fw-normal">Editar Oficina</h1>
+
+<form action="/oficina/atualizar" method="POST">
+    <div class="mb-3">
+        <label for="titulo" class="form-label text-secondary">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" value="{{oficina.titulo}}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="responsavel" class="form-label text-secondary">Responsável</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{oficina.nome}}"
+            required>
+    </div>
+    <input type="number" class="form-control" id="id" name="id" value="{{oficina.id}}" hidden>
+    <div class="mb-3">
+        <label for="descricao" class="form-label text-secondary">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="4"
+            required>{{oficina.descricao}}</textarea>
+    </div>
+
+    <div class="mb-4">
+        <label for="cargaHoraria" class="form-label text-secondary">Carga horária total (em horas)</label>
+        <input type="number" class="form-control" id="carga" name="carga" value="{{oficina.duracao}}" min="1" max="40" required>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>

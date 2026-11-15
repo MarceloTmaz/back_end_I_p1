@@ -1,0 +1,28 @@
+<h1 class="mb-4 fw-normal">Nova Oficina</h1>
+
+<form action="/oficina/cadastrar" method="POST">
+    <div class="mb-3">
+        <label for="titulo" class="form-label text-secondary">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="responsavel" class="form-label text-secondary">Responsável</label>
+        <input type="text" class="form-control" id="nome" name="nome" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="descricao" class="form-label text-secondary">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
+    </div>
+
+    <div class="mb-4">
+        <label for="cargaHoraria" class="form-label text-secondary">Carga horária total (em horas)</label>
+        <input type="number" class="form-control" id="carga" name="carga" min="1" max="40" required>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
