@@ -26,7 +26,7 @@ exports.tela_principal = async function (req, res) {
         encerrados: encerrados,
     }
 
-    res.render('indexx', contexto);
+    res.render('index', contexto);
 
     //console.log(oficinas)
 
@@ -75,7 +75,7 @@ exports.abertas = async function (req, res) {
         encerrados: encerrados,
     }
 
-    res.render('indexx', contexto);
+    res.render('index', contexto);
 
     //console.log(oficinas)
 

@@ -1,2 +1,108 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="mb-3 fw-normal">Oficinas cadastradas</h1>
+
+<p class="mb-3 text-dark">
+    Total de oficinas: <strong>{{total}}</strong> &nbsp;
+    Abertas: <strong>{{abertas}}</strong> &nbsp;
+    Encerradas: <strong>{{encerrados}}</strong> &nbsp;
+    Carga horária das abertas: <strong>{{horas}} h</strong>
+</p>
+
+
+<ul class="nav nav-pills mb-3">
+    <li class="nav-item">
+        <a class="nav-link {{#unless filtroAbertas}}active{{/unless}}" href="/">
+            Todas as Oficinas
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{#if filtroAbertas}}active{{/if}}" href="/abertas">
+            Inscrições Abertas
+        </a>
+    </li>
+</ul>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead class="table-primary">
+            <tr>
+                <th scope="col" class="text-center">Título</th>
+                <th scope="col" class="text-center">Carga horária</th>
+                <th scope="col" class="text-center">Inscrições</th>
+                <th scope="col" class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each oficinas}}
+            <tr>
+                <td class="fw-bold">{{this.titulo}}</td>
+                <td class="text-center">{{this.duracao}} h</td>
+                <td class="text-center">
+                    {{#if this.abertas}}
+                    Abertas
+                    {{else}}
+                    Encerradas
+                    {{/if}}
+                </td>
+                <td class="text-center">
+                    <div class="d-inline-flex gap-1">
+                        <a href="/oficina/consulta/{{this.id}}" class="btn btn-primary btn-sm">Consultar</a>
+                        <a href="/oficina/atualizar/{{this.id}}" class="btn btn-primary btn-sm">Editar</a>
+
+                        <form action="/oficina/excluir" method="POST" class="d-inline">
+                            <input type="number" class="form-control" id="id" name="id" value="{{this.id}}" hidden>
+
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalExcluir{{this.id}}">
+                                Excluir
+                            </button>
+
+                            <div class="modal fade" id="modalExcluir{{this.id}}" tabindex="-1"
+                                aria-labelledby="modalExcluirLabel{{this.id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="modalExcluirLabel{{this.id}}">Excluir
+                                                oficina</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Fechar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Confirma a exclusão de <strong>{{this.titulo}}</strong>?
+                                        </div>
+                                        <div class="modal-footer border-0">
+                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <form action="/oficinas/{{this.id}}/excluir" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn-sm">Confirmar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        {{#if this.abertas}}
+                        <form action="/oficina/condicao" method="POST" class="d-inline">
+                             <input type="number" class="form-control" id="id" name="id" value="{{this.id}}" hidden>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Encerrar</button>
+                        </form>
+                        {{else}}
+                        
+                        <form action="/oficina/condicao" method="POST" class="d-inline">
+                            <input type="number" class="form-control" id="id" name="id" value="{{this.id}}" hidden>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Reabrir</button>
+                        </form>
+                        {{/if}}
+                    </div>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="4" class="text-center text-muted py-4">
+                    Nenhuma oficina cadastrada no momento.
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
